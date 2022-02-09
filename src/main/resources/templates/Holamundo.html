@@ -6,8 +6,33 @@
 </head>
 <body>
     <h1>Hola Mundo</h1>
-    <span th:text="${persona.name}">asd</span>
-    <span th:text="${persona.lastname}">asd</span>
-    <span th:text="${persona.tel}">asd</span>
+    <a th:href="@{/agregar}">Crear persona</a>
+    <!-- Que la lista no sea nula ni vacia-->
+    <div th:if="${personas!=null and !personas.empty}">
+        <table border="1">
+            <thead>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tel</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </thead>
+            <tbody>
+                <tr th:each="persona, x : ${personas}">
+                    <td th:text="${persona.name}"></td>
+                    <td th:text="${persona.lastname}"></td>
+                    <td th:text="${persona.tel}"></td>
+                    <td><a th:href="@{/editar/}+${persona.idpersona}" th:text="Editar"></a></td>
+                    <!--Asigna un valor que se recibió, al hacer click pasamos el parámetro, el signo de pregunta indica que espera ese parametro-->
+                    <td><a th:href="@{/eliminar(idpersona=${persona.idpersona})}" th:text="Eliminar"></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>
+<!--
+<td><a th:href="@{/editar/}+${persona.idpersona}" th:text="Editar/"></a></td>
+<td><a th:href="@{/eliminar(idPersona=${persona.idpersona})}" th:text="Eliminar/"></a></td>
+-->

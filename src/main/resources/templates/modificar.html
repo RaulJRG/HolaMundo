@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos de la persona</title>
+</head>
+<body>
+    <h1>Datos de la persona</h1>
+    <a th:href="@{/}">Regresar</a>
+    <br/>
+    <!-- Siempre se debe tener un botón sumbit que guarde el formulario
+    $ es para recibir variable y @ es enlace a algo-->
+    <form th:action="@{/guardar}" method="post" th:object="${persona}">
+        <!--Falta input para relacionar el id y  editar como tal-->
+        <input type="hidden" name="idpersona" th:field="${persona.idpersona}">
+        <label th:for="name">Nombre</label>
+        <!-- Field relaciona un campo de los atributos del objeto recibido persona, llama getters para obtener el valor del campo-->
+        <input type="text" name="name" th:field="${persona.name}">
+        <br/>
+        <label th:for="lastname">Apellido</label>
+        <input type="text" name="lastname" th:field="${persona.lastname}">
+        <br/>
+        <label th:for="tel">Telefono</label>
+        <input type="text" name="tel" th:field="${persona.tel}">
+        <br/>
+        <!-- -->
+        <input type="submit" name="guardar" value="Guardar"/>
+    </form>
+</body>
+</html>
+<!-- -->
